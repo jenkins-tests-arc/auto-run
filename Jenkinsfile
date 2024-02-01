@@ -18,6 +18,11 @@ pipeline {
                         echo 'prod deployment done'
                     }
                 }
+                stage('deploy to somewhere') {
+                    steps {
+                        echo 'prod deployment done'
+                    }
+                }
             }
         }
     }
