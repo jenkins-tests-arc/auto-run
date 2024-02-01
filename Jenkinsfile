@@ -1,11 +1,6 @@
 pipeline {
     agent  any
     stages {
-        stage('build') {
-            steps {
-                echo  'build done'
-            }
-        }
         stage('deployments') {
             parallel {
                 stage('deploy to stg') {
@@ -13,17 +8,17 @@ pipeline {
                         echo 'stg deployment done'
                     }
                 }
-                stage('deploy to prod') {
-                    steps {
-                        echo 'prod deployment done'
-                    }
-                }
-                stage('deploy to somewhere') {
+                stage('deploy to prod town') {
                     steps {
                         echo 'prod deployment done'
                     }
                 }
             }
+           post {
+                 always {
+                     jiraSendBuildInfo branch: 'main'
+                 }
+             }
         }
     }
 }
